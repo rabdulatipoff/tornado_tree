@@ -9,7 +9,7 @@ from sqlalchemy.orm import relationship, foreign, remote
 from sqlalchemy_utils import LtreeType, Ltree
 from tornado.options import options
 from tornado_sqlalchemy import SQLAlchemy, as_future
-from tornado_tree.dbconn import db_object, make_url
+from tornado_tree.app_config import db_object, make_url
 
 
 db = db_object(make_url(options))
@@ -145,7 +145,3 @@ class TreeNotEmptyError(Exception):
         return self.message
 
 
-if __name__ == '__main__':
-    options.parse_command_line()
-    db = db_object(make_url(options))
-    db.metadata.create_all(db.engine)

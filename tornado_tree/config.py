@@ -7,6 +7,7 @@ define('db_password', type = str, help = 'DB password') # os.environ['TDB_PASSWO
 define('db_name', type = str, help = 'DB name') # os.environ['TDB_DBNAME']
 define('db_hostname', type = str, help = 'DB connection hostname', default = 'localhost') # os.environ['TDB_HOSTNAME']
 define('db_port', type = int, help = 'DB connection port', default = 5432) # os.environ['TDB_PORT']
+define('port', type = int, help = 'Application port', default = 3000) # os.environ['APP_PORT']
 
 
 def make_url(options) -> str:

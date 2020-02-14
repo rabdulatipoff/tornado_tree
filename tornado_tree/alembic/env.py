@@ -12,7 +12,7 @@ config = context.config
 # set up the connection string from the app config
 import os
 from tornado.options import options
-from tornado_tree.dbconn import make_url, db_object
+from tornado_tree.app_config import make_url, db_object
 
 options.parse_config_file(os.path.join('..', 'db_conf.cfg'))
 

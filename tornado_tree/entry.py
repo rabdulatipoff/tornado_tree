@@ -1,8 +1,9 @@
 from tornado.web import Application
 from tornado.ioloop import IOLoop
 from tornado.options import options
-from tornado_tree.dbconn import db_object, make_url
+from tornado_tree.app_config import db_object, make_url
 from tornado_tree.handlers import TreeHandler, NodeHandler
+
 
 # TODO: make this an application factory
 def make_app():
@@ -20,5 +21,5 @@ if __name__ == '__main__':
     options.parse_config_file(os.path.join('..', 'db_conf.cfg'))
 
     app = make_app()
-    app.listen(3000)
+    app.listen(options.port)
     IOLoop.current().start()
