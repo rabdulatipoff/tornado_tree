@@ -1,7 +1,7 @@
 from tornado.web import Application
 from tornado.ioloop import IOLoop
 from tornado.options import options
-from tornado_tree.config import db_object, make_url
+from tornado_tree.config import db_object, make_url, config_from_env
 from tornado_tree.handlers import TreeHandler, NodeHandler
 
 
@@ -17,8 +17,7 @@ def make_app():
 
 
 if __name__ == '__main__':
-    import os
-    options.parse_config_file(os.path.join('..', 'db_conf.cfg'))
+    config_from_env(options)
 
     app = make_app()
     app.listen(options.port)

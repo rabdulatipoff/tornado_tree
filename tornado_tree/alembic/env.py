@@ -12,9 +12,9 @@ config = context.config
 # set up the connection string from the app config
 import os
 from tornado.options import options
-from tornado_tree.config import make_url, db_object
+from tornado_tree.config import make_url, db_object, config_from_env
 
-options.parse_config_file(os.path.join('..', 'db_conf.cfg'))
+config_from_env(options)
 
 db_url = make_url(options)
 config.set_main_option('sqlalchemy.url', db_url)
