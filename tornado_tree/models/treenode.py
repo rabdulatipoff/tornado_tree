@@ -36,7 +36,7 @@ class TreeNode(db.Model):
     __table_args__ = (
             # GiST proved to consume too much RAM without much functional benefit 
             #Index('ix_nodepath', path, postgresql_using = 'gist'),
-            Index('ix_nodepath', func.md5(str(path)), postgresql_using = 'btree'),)
+            Index('ix_nodepath', func.md5(func.ltree2text(path)), postgresql_using = 'btree'),)
 
     parent = relationship(
             'TreeNode',
