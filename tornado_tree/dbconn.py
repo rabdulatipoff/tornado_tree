@@ -13,6 +13,7 @@ def make_url(options) -> str:
     """
     Generate connection URL from provided options
     """
+    # FIXME: hardcoded driver name (though we require postgresql)
     return 'postgresql://{db_username}:{db_password}@{db_hostname}:{db_port}/{db_name}'.format(
             db_username = options.db_username,
             db_password = options.db_password,
