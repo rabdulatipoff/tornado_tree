@@ -4,7 +4,7 @@ from tornado.options import options
 from tornado_tree.dbconn import db_object, make_url
 from tornado_tree.handlers.tree import TreeHandler, NodeHandler
 
-
+# TODO: make this an application factory
 def make_app():
     urls = (
         (r'/?', TreeHandler),
@@ -17,7 +17,7 @@ def make_app():
 
 if __name__ == '__main__':
     import os
-    options.parse_config_file(os.path.join('.', 'db_conf.cfg'))
+    options.parse_config_file(os.path.join('..', 'db_conf.cfg'))
 
     app = make_app()
     app.listen(3000)
