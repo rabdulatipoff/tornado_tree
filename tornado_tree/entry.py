@@ -2,7 +2,7 @@ from tornado.web import Application
 from tornado.ioloop import IOLoop
 from tornado.options import options
 from tornado_tree.dbconn import db_object, make_url
-from tornado_tree.handlers.tree import TreeHandler, NodeHandler
+from tornado_tree.handlers import TreeHandler, NodeHandler
 
 # TODO: make this an application factory
 def make_app():

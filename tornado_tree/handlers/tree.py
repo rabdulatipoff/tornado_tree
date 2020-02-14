@@ -1,7 +1,7 @@
 from sqlalchemy.orm.exc import NoResultFound, MultipleResultsFound
 from tornado.web import RequestHandler, Finish
 from tornado_sqlalchemy import SessionMixin, as_future
-from tornado_tree.models.treenode import TreeNode, TreeNotEmptyError
+from tornado_tree.models import TreeNode, TreeNotEmptyError
 
 
 class TreeHandler(SessionMixin, RequestHandler):
