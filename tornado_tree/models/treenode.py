@@ -7,6 +7,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.sql import func
 from sqlalchemy.orm import relationship, foreign, remote
 from sqlalchemy_utils import LtreeType, Ltree
+
 from tornado.options import options
 from tornado_sqlalchemy import SQLAlchemy, as_future
 from tornado_tree.config import db_object, make_url
@@ -15,9 +16,12 @@ from tornado_tree.config import db_object, make_url
 db = db_object(make_url(options))
 
 
-# subpath(ltree, int offset, int len)
-# Leaving the child out of the parent chain (len = -1)
 def get_rootpath(path):
+    """
+    Obtain the path from the node to the tree root.
+    Calling PGSQL's subpath(ltree, int offset, int len)
+    """
+    # Leaving the child out of the parent chain (len = -1)
     return func.subpath(path, 0, -1)
 
 
@@ -61,8 +65,8 @@ class TreeNode(db.Model):
 
     async def register(self, session) -> str:
         """
-        Obtain and manually set object's id and ltree path
-        session must be provided py tornado_sqlalchemy's ThreadPoolExecutor instance
+        Obtain and manually set object's id and ltree path.
+        session must be provided with tornado_sqlalchemy's ThreadPoolExecutor instance.
         """
         # Prevent INSERT before instance registration
         with session.no_autoflush:
@@ -90,13 +94,13 @@ class TreeNode(db.Model):
 
     def parent_count(self) -> int:
         """
-        Return number of ancestors, excluding self
+        Return number of ancestors, excluding self.
         """
         return len(self.path) - 1
 
     def parent_ids(self) -> list:
         """
-        Return list of ancestor IDs except the last one (self)
+        Return list of ancestor IDs except the last one (self).
         """
 
         # FIXME: split( could be slow on a long path; replace with a generator 
@@ -105,7 +109,7 @@ class TreeNode(db.Model):
 
     def to_json(self, indent: Optional[int] = 0) -> str:
         """
-        Serialize node to JSON format
+        Serialize node to JSON format.
         """
 
         return json.dumps({
