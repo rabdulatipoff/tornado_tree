@@ -1,7 +1,7 @@
 from tornado.web import Application
 from tornado.ioloop import IOLoop
 from tornado.options import options
-from tornado_tree.app_config import db_object, make_url
+from tornado_tree.config import db_object, make_url
 from tornado_tree.handlers import TreeHandler, NodeHandler
 
 
