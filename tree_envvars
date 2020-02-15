@@ -3,7 +3,6 @@
 export APP_DB_USERNAME="treeuser"
 export APP_DB_PASSWORD="tree123"
 export APP_DB_NAME="treedb"
-# Mirroring docker-compose.yml service name
-export APP_DB_HOSTNAME="db"
+export APP_DB_HOSTNAME="localhost"
 export APP_DB_PORT="5432"
 export APP_PORT="3000"
