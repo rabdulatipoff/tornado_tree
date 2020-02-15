@@ -1,0 +1,39 @@
+version: "3"
+
+services:
+
+    db:
+        image: postgres:9.5
+        environment:
+            - POSTGRES_USER=$APP_DB_USERNAME
+            - POSTGRES_PASSWORD=$APP_DB_PASSWORD
+        ports:
+            - "$APP_DB_PORT:$APP_DB_PORT"
+        volumes:
+            - db-data:/var/lib/postgresql/data
+            - ./sql/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+    app:
+        build: .
+        command:
+            sh -c "./wait-for db:$APP_DB_PORT -- ./entrypoint.sh"
+        restart: on-failure
+        expose:
+            - '$APP_PORT'
+        environment:
+            - APP_DB_USERNAME=$APP_DB_USERNAME
+            - APP_DB_PASSWORD=$APP_DB_PASSWORD
+            - APP_DB_NAME=$APP_DB_NAME
+            - APP_DB_HOSTNAME=$APP_DB_HOSTNAME
+            - APP_DB_PORT=$APP_DB_PORT
+            - APP_PORT=$APP_PORT
+            - MIGRATE=1
+            - DEBUG=1
+        ports:
+            - "$APP_PORT:$APP_PORT"
+        depends_on:
+            - db
+
+volumes:
+    db-data:
+        driver: local
