@@ -1,6 +1,6 @@
 FROM python:3.8-slim-buster
 
-RUN apt-get -q update && apt-get -qy install netcat postgresql-client
+RUN apt-get -q update && apt-get -qy install netcat
 
 COPY tornado_tree/requirements.txt /tmp/
 RUN pip install --no-cache-dir -r /tmp/requirements.txt

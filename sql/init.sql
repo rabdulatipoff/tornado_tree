@@ -1,1 +1,1 @@
-create database treedb;
+create extension if not exists ltree;
