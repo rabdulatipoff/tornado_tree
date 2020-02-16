@@ -32,7 +32,7 @@ $ sudo -u postgres psql -c "CREATE DATABASE $APP_DB_NAME;"
 $ sudo -u postgres psql $APP_DB_NAME -c "CREATE EXTENSION IF NOT EXISTS LTREE;"
 ```
 
-Alternatively, you can [deploy](#docker) with docker-compose, which will handle this automatically.
+Alternatively, you can [deploy](#deploy) the service with docker-compose, which will handle this automatically.
 After you've set up the database, you may proceed with schema migrations and running the app. 
 
 ## Migrations and running the app 
@@ -51,7 +51,7 @@ These variables are provided by the `.env` script, adjust these settings in the 
 | `MIGRATE` | 1 | Run migrations before starting the app. |
 | `DEBUG` | 1 | Enable debug mode (pretty logging). |
 
-In order to apply migrations and run the application, you must first set certain [environment variables](#envs) to provide the application settings. You can source the `.env` file to do so:
+Before you run migrations or start the application, export these variables in your shell environment or source the `.env` file:
 
 ```sh
 $ . ../.env
@@ -78,7 +78,7 @@ $ curl localhost:$APP_PORT
 {"error": "The tree is empty yet"}
 ```
 
-## [Docker deployment](#docker)
+## [Docker deployment](#deploy)
 The default docker-compose configuration is intended for development use. Please refer to [Environment variables](#envs) section for additional information.
 You can also provide custom settings in docker-compose.yml or pass them with `-e` key when calling `docker-compose run`. Remember that `docker-compose run` overrides the entrypoint command defined in the app configuration.
 
