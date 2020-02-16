@@ -15,7 +15,7 @@ def make_app():
 
     return Application(
             urls,
-            db = db_object(make_url(options)))
+            db = db_object(options = options))
 
 
 if __name__ == '__main__':

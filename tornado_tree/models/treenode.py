@@ -13,7 +13,7 @@ from tornado_sqlalchemy import SQLAlchemy, as_future
 from tornado_tree.config import db_object, make_url
 
 
-db = db_object(make_url(options))
+db = db_object(options = options)
 
 
 def get_rootpath(path):
