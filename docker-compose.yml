@@ -19,8 +19,6 @@ services:
         command:
             sh -c "./wait-for db:$APP_DB_PORT -- ./entrypoint.sh"
         restart: on-failure
-        expose:
-            - '$APP_PORT'
         environment:
             - APP_DB_USERNAME=$APP_DB_USERNAME
             - APP_DB_PASSWORD=$APP_DB_PASSWORD
@@ -28,8 +26,8 @@ services:
             - APP_DB_HOSTNAME=db
             - APP_DB_PORT=$APP_DB_PORT
             - APP_PORT=$APP_PORT
-            - MIGRATE=1
-            - DEBUG=1
+            - MIGRATE=$MIGRATE
+            - DEBUG=$DEBUG
         ports:
             - "$APP_PORT:$APP_PORT"
         depends_on:
