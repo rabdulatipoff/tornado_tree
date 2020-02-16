@@ -43,7 +43,8 @@ def config_from_env(options):
         try:
             parsed = os.environ['APP_' + option['name'].upper()]
             # Explicit type casting (for retrieving int values, etc.)
-            setattr(options, option['name'], option['type'](parsed))
+            type_cast = option['type'] if 'type' in option else type(option['default'])
+            setattr(options, option['name'], type_cast(parsed))
         except KeyError:
             if 'default' not in option:
                 raise EnvironmentVarNotSet(f'{option["name"]} is not provided; APP_{option["name"].upper()} must be set')
